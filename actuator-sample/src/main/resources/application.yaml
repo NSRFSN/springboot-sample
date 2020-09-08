@@ -1,0 +1,44 @@
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-origins: http://localhost
+        allowed-methods: GET,POST
+      exposure:
+        include: '*'
+#      base-path: /
+#      path-mapping:
+#        prometheus: /metrics
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+      probes:
+        enabled: true
+    prometheus:
+      enabled: true
+  health:
+    redis:
+      enabled: true
+    mongo:
+      enabled: true
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
+
+spring:
+  redis:
+    cluster:
+      nodes: redis-c68d434-SBOS-queue-dev.dcs.huaweicloud.com:6379
+    timeout: 3000
+    lettuce:
+      pool:
+        max-active: 30
+        max-idle: 20
+        min-idle: 10
+        max-wait: 3000
+  data:
+    mongodb:
+      uri: mongodb://sbos-rw:AC%3f!L%2bX12c%3fG0goPCF@10.20.30.183:8635,10.20.28.244:8635/task?authSource=admin
